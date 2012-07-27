@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app 
+  xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" 
+  web:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" 
+  id="WebApp_ID" version="2.5">
+  
+	<display-name>Search Inventory v3</display-name>
+	
+    <listener>
+        <description>Spring Context Loader</description>
+        <display-name>SpringContextLoader</display-name>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <servlet>
+        <servlet-name>default-servlet-handler</servlet-name>
+        <servlet-class>org.springframework.web.context.support.HttpRequestHandlerServlet</servlet-class>
+    </servlet>
+
+ 	<servlet-mapping>
+  		<servlet-name>default-servlet-handler</servlet-name>
+  		<url-pattern>/static/*</url-pattern>
+ 	</servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>default-servlet-handler</servlet-name>
+        <url-pattern>/favicon.ico</url-pattern>
+    </servlet-mapping>
+
+	<!--
+		Spring's dispatch servlet
+		This servlet is mapped as 'catch-all'; Spring will handle any url pattern that is not explicitly matched above
+	 -->
+	<servlet>
+		<servlet-name>dispatch</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>dispatch</servlet-name>
+		<!--
+			NOTE : There is a BIG difference between the url-pattern / and /*
+			/* matches any path
+			/ overrides the default, container-provided servlet
+			See http://www.coderanch.com/t/366340/Servlets/java/servlet-mapping-url-pattern-vs
+				and SRV.11.2 Specification of Mappings
+		 -->
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+</web-app>
