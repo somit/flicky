@@ -4,11 +4,10 @@
     <meta charset="utf-8">
     <title>Bootstrap, from Twitter</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Flicky Application">
+    <meta name="author" content="Somit">
 
     <!-- Le styles -->
-
     <link href="/static/css/bootstrap.css" rel="stylesheet">
     <style>
       body {
@@ -42,24 +41,35 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Project name</a>
+          <a class="brand" href="http://localhost:8080/">Flicky</a>
           <div class="nav-collapse">
-
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><a href="http://somit.me/">About Me</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
 
       </div>
     </div>
+    <div class="container">
+      <div class="hero-unit" height=80px>
+        <h1>Welcom to FLickY</h1>
+        <p>This is a simple platform to maintain your albums.</p>
+       
+      </div>
 
     <div class="container">
+<div class="row">
+        <div class="span8">
+          <h2>Albums</h2>
+           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+        </div>
+        <div class="span4">
+          <h2>Recent Images</h2>
+           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+       </div>
 
-      <h1>Bootstrap starter template</h1>
-      <p>Use this document as a way to quick start any new project.<br> All you get is this message and a barebones HTML document.</p>
 
     </div> <!-- /container -->
 
