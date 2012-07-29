@@ -41,10 +41,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="http://localhost:8080/">Flicky</a>
+          <a class="brand" href="/">Flicky</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
+              <li class="active"><a href="/">Home</a></li>
               <li><a href="http://somit.me/">About Me</a></li>
             </ul>
           </div><!--/.nav-collapse -->
@@ -60,15 +60,47 @@
       </div>
 
     <div class="container">
-<div class="row">
+    <div class="row">
         <div class="span8">
-          <h2>Albums</h2>
-           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+        
+                          <div class="container">
+   			   <div class="row">
+   			   
+                                   <div class="span5">
+                                   <h2>Albums</h2>
+                         	   </div>
+
+                                   <div class="span3">
+                                   <a class="btn btn-primary btn-large" href="/album">Create Album</a>
+       	                           </div>
+                           </div>
+                           </div><!--container-->
+   <!---Album list here --->
+         <table border=4>
+         <tr><td>List of Albums<td>Creation Date<td>Description
+         <#list album?keys as key>
+ 	    <tr><td><a href="/albums/${album[key].uid}">${album[key].name}</a>
+ 	 		<td><a href="/albums/${album[key].uid}">${album[key].creationDate}</a>
+ 	 		<td><a href="/albums/${album[key].uid}">${album[key].description}</a>
+ 	 </#list>
+	</table> 
         </div>
+
         <div class="span4">
           <h2>Recent Images</h2>
-           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-       </div>
+         <ul class="thumbnails">
+         <li class="span3">
+         <a href="#" class="thumbnail">
+         <img src="http://placehold.it/260x180" alt="">
+         </a>
+         </li>
+         <li class="span3">
+         <a href="#" class="thumbnail">
+         <img src="http://placehold.it/260x180" alt="">
+         </a>
+         </li>
+         </ul>
+         </div>
 
 
     </div> <!-- /container -->

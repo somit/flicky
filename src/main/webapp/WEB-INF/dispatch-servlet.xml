@@ -8,7 +8,7 @@
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<context:component-scan base-package="com.hashedin.flicky.web" />
+	<context:component-scan base-package="com.hashedin.flicky" />
 	<!--
 		View resolvers can also be configured with ResourceBundles or XML
 		files. If you need different view resolving based on Locale, you have

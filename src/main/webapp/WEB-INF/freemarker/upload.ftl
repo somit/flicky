@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<#import "/mylib.ftl" as mylib />
+
 
 <html lang="en">
   <head>
@@ -58,13 +58,13 @@
     <div class="row">
         <div class="span8">
 <body>
-  <form name="user" action="hello" method="post">
-    Album Name: <input type="text" name="firstname" /> <br/>
-     Description:<input type="text" name="lastname" />       <br/>
-    <input type="submit" value="Save" />
-<@mylib.selectOptions "country" countryList "code" "name" />
+<h1>Please upload a file</h1>
+        <form method="post" action="/fileupload" enctype="multipart/form-data">
+            <input type="text" name="name"/><br/>
+            <input type="file" name="file"/><br/>
+            <input type="submit" value="Submit"/>
+        </form>
 
-  </form>
          
          </div>
 

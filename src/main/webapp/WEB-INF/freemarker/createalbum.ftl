@@ -41,10 +41,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="http://localhost:8080/">Flicky</a>
+          <a class="brand" href="/">Flicky</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
+              <li class="active"><a href="/">Home</a></li>
               <li><a href="http://somit.me/">About Me</a></li>
             </ul>
           </div><!--/.nav-collapse -->
@@ -52,30 +52,21 @@
 
       </div>
     </div>
-<#import "spring.ftl" as spring />
-<html>
-<form action="" method="POST">
-  Name: 
-  <@spring.bind "command.name" /> 
-  <input type="text" 
-    name="${spring.status.expression}" 
-    value="${spring.status.value?default("")}" /><br>
-  <#list spring.status.errorMessages as error> <b>${error}</b> <br> </#list>
-  <br>
-  <input type="submit" value="submit"/>
-</form>
+    <div class="container">
+    <div class="row">
+        <div class="span8">
+<body>
+  <form name="user" action="/createalbum" method="post">
+    Album Name: <input type="text" name="name" /> <br/>
+     Description:<input type="text" name="description" />       <br/>
+    <input type="submit" value="Save" />
+  </form>
+         
+         </div>
 
-</html>
-  <form class="well" method="POST">  
-   <input type="text" class="span3" placeholder="Type something…">  
-   <span class="help-inline">Album Name</span> <br/>
-   <input type="text" class="span3" placeholder="Type something…">  
-   <span class="help-inline">Description</span> <br/>
-   <input type="text" class="span3" placeholder="Type something…">  
-   <span class="help-inline">Date</span> <br/>
-   </label>  
-   <button type="submit" class="btn">Submit</button>  
- </form> 
+
+    </div> <!-- /container -->
+
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

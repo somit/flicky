@@ -4,11 +4,10 @@
     <meta charset="utf-8">
     <title>Bootstrap, from Twitter</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Flicky Application">
+    <meta name="author" content="Somit">
 
     <!-- Le styles -->
-
     <link href="/static/css/bootstrap.css" rel="stylesheet">
     <style>
       body {
@@ -42,24 +41,38 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Project name</a>
+          <a class="brand" href="/">Flicky</a>
           <div class="nav-collapse">
-
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li class="active"><a href="/">Home</a></li>
+              <li><a href="http://somit.me/">About Me</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
 
       </div>
     </div>
-
     <div class="container">
+    <div class="row">
+        <div class="span8">
+        
+                          <div class="container">
+   			   <div class="row">
+        <div class="span12">
+          <h2>Images</h2>
+         </ul>
+         
+         <#list albumImages as key>       
+ 	      <ol class="span3">
+          <a href="/images/${key}" class="thumbnail">
+          <img src="/static/images/${key.name}" alt="" width="260" height="180">
+         </a>
+         </ol>
+ 	 </#list> 
+         
+         
+         </div>
 
-      <h1>Album : ${album.name}</h1>
-      <p>Use this document as a way to quick start any new project.<br> All you get is this message and a barebones HTML document.</p>
 
     </div> <!-- /container -->
 

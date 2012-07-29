@@ -3,6 +3,7 @@
  */
 package com.hashedin.flicky.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,22 +11,72 @@ import java.util.List;
  *
  */
 public class Image {
-	private int id;
+	private String id;
 	private String name;
 	private String date;
 	private List<String> comments;
+	private String previous;
+	private String next;
+	private Album album;
+	
+	public Image()
+	{    previous=null;
+	     next=null;
+		comments =new ArrayList<String>();
+		comments.add("kya bakwas");
+		comments.add("bas karo");
+	}
+	
+	/**
+	 * @return the previous
+	 */
+	public String getPrevious() {
+		return previous;
+	}
+
+	/**
+	 * @param previous the previous to set
+	 */
+	public void setPrevious(String previous) {
+		this.previous=previous;
+	}
+
+	/**
+	 * @return the next
+	 */
+	public String getNext() {
+		return next;
+	}
+
+	/**
+	 * @param next the next to set
+	 */
+	public void setNext(String next) {
+		this.next = next;
+	}
+
+	
 	/**
 	 * @return the id
 	 */
-	public int getId() {
+	public String getId() {
 		return id;
 	}
+
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
+
+	/**
+	 * @param comments the comments to set
+	 */
+	public void setComments(List<String> comments) {
+		this.comments = comments;
+	}
+
 	/**
 	 * @return the date
 	 */
@@ -44,17 +95,25 @@ public class Image {
 	public List<String> getComments() {
 		return comments;
 	}
-	/**
-	 * @param comments the comments to set
-	 */
-	public void setComments(List<String> comments) {
-		this.comments = comments;
-	}
+	
 	public void setName(String name) {
 		this.name = name;
 	}
 	public String getName() {
 		return name;
 	}
-	
+
+	/**
+	 * @return the album
+	 */
+	public Album getAlbum() {
+		return album;
+	}
+
+	/**
+	 * @param album the album to set
+	 */
+	public void setAlbum(Album album) {
+		this.album = album;
+	}	
 }
