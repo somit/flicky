@@ -58,14 +58,16 @@
     <div class="row">
         <div class="span8">
 <body>
-<h1>Please upload a file</h1>
-        <form method="post" action="/fileupload" enctype="multipart/form-data">
-            <input type="text" name="name"/><br/>
+<h1>Please upload an image:</h1>
+        <form method="post" action="/fileupload/${albumid}" enctype="multipart/form-data">
+	    <input type="text" name="description"/>:Description<br/>
             <input type="file" name="file"/><br/>
             <input type="submit" value="Submit"/>
         </form>
 
-         
+         <div class="span4">
+            <a class="btn btn-primary btn-large" href="/albums/${albumid}">Go back to Album</a>
+       	      </div>  
          </div>
 
 

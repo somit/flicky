@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+
+
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -31,49 +33,17 @@
   </head>
 
   <body>
-
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="/">Flicky</a>
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li class="active"><a href="/">Home</a></li>
-              <li><a href="http://somit.me/">About Me</a></li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-
-      </div>
-    </div>
-                       <div class="container">
-     	            <div class="span4 offset1" >
-    			<div class="btn-group">
-   	 <a class="btn" href="/upload/${albumImages.albumId}">Upload Image</a>
-   	 </div>
-   	 </div>
     <div class="container">
     <div class="row">
-        <div class="span8">
-                          <div class="container">
-   			   <div class="row">
-        <div class="span12">
-          <h2>Images</h2>
-         </ul>
-         <#list albumImages.imageList as key>      
- 	      <ol class="span3">
-          <a href="/images/${key.album.uid}/${key.id}" class="thumbnail">
-          <img src="/static/images/${key.name}" alt="" width="260" height="180">
+          <div class="span3">
+          <#list recentimages as key> 
+        <ol class="thumbnails">
+          <a href="/images/${key}" class="thumbnail">
+          <img src="/static/images/${key}" alt="">
          </a>
          </ol>
  	 </#list> 
-
+          </div>
          </div>
 
 

@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,23 +17,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.hashedin.flicky.manager.AlbumManager;
+import com.hashedin.flicky.manager.ImageManager;
+
 /**
  * @author somit
  *
  */
 @Controller
 public class ImageController {
-		
-	@RequestMapping("/image/{image}")	
-	public ModelAndView albums(@PathVariable Image image){
-	//	System.out.println(uid+" "+image);
-//		Image image1=new Image();
-//		image1.setDate("2012-2-3");
-//		image1.setId(5);
-		//image.addComments("bakwas");
-		//image.addComments("sahi bole be");
-//		image1.setName("3.jpg");
-		
+	@Autowired
+	private AlbumManager db;
+	
+	@RequestMapping("/images/{albumUid}/{imageId}")	
+	public ModelAndView albums(@PathVariable String albumUid, @PathVariable String imageId){
+          ImageManager imageManager=db.getImageManagerMap().get(albumUid);
+          Image image=imageManager.getImage(imageId);
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("singleImage",image);
 		ModelAndView modelAndView = new ModelAndView("images", model);
@@ -40,22 +40,27 @@ public class ImageController {
 	}
 
     @RequestMapping(value="/upload/{uid}")
-    public ModelAndView add (String uid) {
- 		ModelAndView modelAndView = new ModelAndView("upload", null);
+    public ModelAndView add (@PathVariable String uid){
+    	Map<String, Object> model = new HashMap<String, Object>();
+		model.put("albumid",uid);
+ 		ModelAndView modelAndView = new ModelAndView("upload", model);
  		return modelAndView;
      }
-     @RequestMapping(value = "/fileupload", method = RequestMethod.POST)
-     public String handleFormUpload(@RequestParam("name") String name,
-         @RequestParam("file") MultipartFile file) throws IOException {
-    	 String filePath = "/home/somit/apps/" + file.getOriginalFilename(); 
-    	 File dest = new File(filePath);  
+     @RequestMapping(value = "/fileupload/{uid}", method = RequestMethod.POST)
+     public String handleFormUpload(@PathVariable String uid, @RequestParam("description")String description,@RequestParam("file") MultipartFile file) throws IOException {
+    	 String filePath = "/home/somit/apps/flicky/src/main/webapp/static/images/" + file.getOriginalFilename(); 
+    	 File dest = new File(filePath); 
     	 file.transferTo(dest); 
-         if (!file.isEmpty()) {
-             byte[] bytes = file.getBytes();
-             System.out.println(file.getOriginalFilename());
-            return "redirect:uploadSuccess";
+    	 String name=file.getOriginalFilename();
+    	 ImageManager imageManager=db.getImageManagerMap().get(uid);
+    	 Album album=db.getTheAlbum(uid);
+    	  Image newImage=imageManager.createImage(album, name, description);
+    	  System.out.println(newImage.getPrevious()+" "+newImage.getId()+" "+newImage.getNext());
+    	  album.getListOfImages().add(newImage);
+         if (newImage!=null) {
+            return "redirect:/upload/"+uid;
         } else {
-            return "redirect:uploadFailure";
+            return "redirect:upload/"+uid;
         }
      }
 }

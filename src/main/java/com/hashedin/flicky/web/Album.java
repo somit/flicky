@@ -1,5 +1,6 @@
 package com.hashedin.flicky.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Album {
@@ -8,7 +9,9 @@ public class Album {
 	private String description;
 	private String creationDate;
 	private List<Image> listOfImages;
-
+	public Album(){
+		listOfImages=new ArrayList<Image>();
+	}
 	/**
 	 * @return the name
 	 */
@@ -71,7 +74,7 @@ public class Album {
 	public void setListOfImages(List<Image> listOfImages) {
 		this.listOfImages = listOfImages;
 	}
-	public void addImagetoList(Image image){
+	public void addImageToList(Image image){
 		this.listOfImages.add(image);
 	}
 }

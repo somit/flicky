@@ -57,8 +57,8 @@
         <div class="span8">
 <body>
   <form name="user" action="/createalbum" method="post">
-    Album Name: <input type="text" name="name" /> <br/>
-     Description:<input type="text" name="description" />       <br/>
+     <input type="text" name="name" />:Album Name <br/>
+     <input type="text" name="description" />:Description <br/>
     <input type="submit" value="Save" />
   </form>
          

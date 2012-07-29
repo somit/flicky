@@ -19,30 +19,37 @@ public class HomeController {
 	
 	@RequestMapping("/")	
 	public ModelAndView albums(){
-//		ApplicationContext context = new AnnotationConfigWebApplicationContext();
-//		context.getBean("");
-		
-         Album album=db.createAlbum("LEH", "Grt Journey");
-         List<Image> listOfImage=new ArrayList<Image>();
-		Image image1=new Image();
-		image1.setName("1.jpg");
-		image1.setDate("2012-2-31");
-		image1.setId("1");
-		image1.setAlbum(album);
-		listOfImage.add(image1);
-	//	image1.setPrevious();
-		image1=new Image();
-		image1.setName("2.jpg");
-		image1.setDate("2012-2-31");
-		image1.setId("2");
-		image1.setAlbum(album);
-		listOfImage.add(image1);
-		album.setListOfImages(listOfImage);
 		Map<String, Album> albumList = db.getAlbums();
+//		List<Image> recentImageList=new ArrayList<Image>();
+//		recentImageList=getRecent();
+//		HomeClass modelHome=new HomeClass();
+//		modelHome.setRecentImages(recentImageList);
+//		modelHome.setAlbums(albumList);
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("album", albumList);
 		ModelAndView modelAndView = new ModelAndView("home", model);
 		return modelAndView;
 	}
-
+	@RequestMapping("/sidebar")
+	public ModelAndView recentImages(){
+		List<Image> recentImages= new ArrayList<Image>();
+          recentImages=getRecent();
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("recentimages",recentImages);
+		ModelAndView modelAndView = new ModelAndView("sidebar", model);
+		return modelAndView;
+	}
+	public List<Image> getRecent()
+	{
+		List<Image> recentImages= db.getRecentImages();
+        List<Image> recentImageList=new ArrayList<Image>();
+        int size= recentImages.size();
+        int j=1;
+        while(j<4 && size!=0){
+       	 recentImageList.add(recentImages.get(size-j));
+       	 j++;
+        }
+		return recentImageList;
+		
+	}
 }

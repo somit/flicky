@@ -85,9 +85,10 @@
  	 </#list>
 	</table> 
         </div>
-
+ 
         <div class="span4">
           <h2>Recent Images</h2>
+          <#include "/sidebar.ftl">
          <ul class="thumbnails">
          <li class="span3">
          <a href="#" class="thumbnail">

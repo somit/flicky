@@ -57,8 +57,8 @@
            <div class="row">
            <div class="span12">        
    	 <div class="btn-group">
-   	 <button class="btn" href="/image/${singleImage.previous}">prev</button>
-   	 <button class="btn" href="/image/${singleImage.next}>next</button>
+   	 <a class="btn" href="/images/${singleImage.album.uid}/${singleImage.previous}">prev</a>
+   	 <a class="btn" href="/images/${singleImage.album.uid}/${singleImage.next}">next</a>
    	 </div> 
          </div>
     </div> <!-- /container -->
@@ -76,7 +76,7 @@
         <div class="span4 offset2">       
        <h2>     Comments</h2>
                 <#list singleImage.comments as key>       
- 	      <li class="span3">
+ 	      < class="span3">
        <h3>${key}</h3>
          </a>
          </li>

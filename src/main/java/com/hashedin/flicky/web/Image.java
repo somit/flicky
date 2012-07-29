@@ -14,6 +14,7 @@ public class Image {
 	private String id;
 	private String name;
 	private String date;
+	private String description;
 	private List<String> comments;
 	private String previous;
 	private String next;
@@ -23,10 +24,22 @@ public class Image {
 	{    previous=null;
 	     next=null;
 		comments =new ArrayList<String>();
-		comments.add("kya bakwas");
-		comments.add("bas karo");
 	}
 	
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	/**
 	 * @return the previous
 	 */
