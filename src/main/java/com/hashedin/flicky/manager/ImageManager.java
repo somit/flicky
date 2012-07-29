@@ -48,5 +48,7 @@ public class ImageManager {
 		images.put(idImage,newImage);
 		return newImage;
 	}
+
+	
 	
 }

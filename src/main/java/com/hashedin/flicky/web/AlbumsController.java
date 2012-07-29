@@ -50,5 +50,23 @@ public class AlbumsController {
 		String albumId = album.getUid();
 		return "redirect:/upload/" + albumId;
 	}
-
+	@RequestMapping("/sidebar")
+	public ModelAndView recentImages() {
+		//List<Image> recentImages = new ArrayList<Image>();
+		List<Image> imageList = db.getRecentImages();
+		List<Image> recentImageList = new ArrayList<Image>();
+		int size = imageList.size();
+		System.out.println(size);
+		int i= (size<=3)?0:size-3;
+		int j=i;
+		System.out.println(i);
+		for(j=size-1;j>=i;j--){
+			Image image=imageList.get(j);
+			recentImageList.add(image);
+		}
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("recentImages", recentImageList);
+		ModelAndView modelAndView = new ModelAndView("sidebar", model);
+		return modelAndView;
+	}
 }

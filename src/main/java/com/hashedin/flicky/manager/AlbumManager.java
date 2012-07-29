@@ -13,8 +13,9 @@ import com.hashedin.flicky.web.Image;
 
 public class AlbumManager {
 	private final Map<String, Album> albums = new HashMap<String, Album>();
-	private final Map<String,ImageManager> imageManagerMap=new HashMap<String, ImageManager>(); 
-	private final List<Image> recentImages =  new ArrayList<Image>();
+	private final Map<String, ImageManager> imageManagerMap = new HashMap<String, ImageManager>();
+	private List<Image> recentImages = new ArrayList<Image>();
+
 	public Album getAlbum(String name) {
 		Album a = null;
 		a = albums.get(name);
@@ -22,31 +23,33 @@ public class AlbumManager {
 	}
 
 	public Album createAlbum(String name, String description) {
-		String creationDate = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
-		UUID uid= UUID.randomUUID();
+		String creationDate = new SimpleDateFormat("dd/MM/yyyy")
+				.format(Calendar.getInstance().getTime());
+		UUID uid = UUID.randomUUID();
 		String uidAlbum = uid.toString();
 		Album album = new Album();
 		album.setUid(uidAlbum);
 		album.setName(name);
 		album.setDescription(description);
 		album.setCreationDate(creationDate);
-		albums.put(uidAlbum,album);
+		albums.put(uidAlbum, album);
 		ImageManager imageManager = new ImageManager();
 		imageManagerMap.put(uidAlbum, imageManager);
 		return album;
 	}
 
 	/**
-	 * @param albums the albums to set
-	 * @return 
+	 * @param albums
+	 *            the albums to set
+	 * @return
 	 */
 	public Map<String, Album> getAlbums() {
 		return albums;
 	}
+
 	public Album getTheAlbum(String uid) {
 		return albums.get(uid);
 	}
-	
 
 	/**
 	 * @return the imageManagerMap
@@ -61,5 +64,13 @@ public class AlbumManager {
 	public List<Image> getRecentImages() {
 		return recentImages;
 	}
-	
+
+	/**
+	 * @param recentImages
+	 *            the recentImages to set
+	 */
+	public void setRecentImages(List<Image> recentImages) {
+		this.recentImages = recentImages;
+	}
+
 }

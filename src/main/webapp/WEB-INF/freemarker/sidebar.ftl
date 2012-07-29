@@ -36,10 +36,10 @@
     <div class="container">
     <div class="row">
           <div class="span3">
-          <#list recentimages as key> 
+          <#list recentImages as key> 
         <ol class="thumbnails">
-          <a href="/images/${key}" class="thumbnail">
-          <img src="/static/images/${key}" alt="">
+          <a href="/images/${key.album.uid}/${key.id}" class="thumbnail">
+          <img src="/static/images/${key.album.uid}/$key.id" alt="">
          </a>
          </ol>
  	 </#list> 

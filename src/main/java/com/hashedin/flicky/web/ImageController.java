@@ -5,7 +5,9 @@ package com.hashedin.flicky.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,12 +57,27 @@ public class ImageController {
     	 ImageManager imageManager=db.getImageManagerMap().get(uid);
     	 Album album=db.getTheAlbum(uid);
     	  Image newImage=imageManager.createImage(album, name, description);
-    	  System.out.println(newImage.getPrevious()+" "+newImage.getId()+" "+newImage.getNext());
+    	  List<Image> recent = db.getRecentImages();
+    	  recent.add(newImage);
+    	// System.out.println(newImage.getPrevious()+" "+newImage.getId()+" "+newImage.getNext());
     	  album.getListOfImages().add(newImage);
          if (newImage!=null) {
             return "redirect:/upload/"+uid;
         } else {
-            return "redirect:upload/"+uid;
+            return "redirect:/upload/"+uid;
         }
      }
+     
+     @RequestMapping(value = "/comments/{albumUid}/{imageId}", method = RequestMethod.POST)
+     public String addComments(@PathVariable String albumUid,@PathVariable String imageId, @RequestParam("comment")String comment) throws IOException {
+    	
+    	 ImageManager imageManager=db.getImageManagerMap().get(albumUid);
+    	 Image image = imageManager.getImage(imageId);
+    	 List<String> comments= new ArrayList<String>();
+    	 comments=image.getComments();
+     	 comments.add(comment);
+     	 String path=albumUid+"/"+imageId;
+         return "redirect:/images/"+path;
+     }
+     
 }

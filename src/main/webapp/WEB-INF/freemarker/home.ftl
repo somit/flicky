@@ -54,7 +54,7 @@
     </div>
     <div class="container">
       <div class="hero-unit" height=80px>
-        <h1>Welcom to FLickY</h1>
+        <h1>Welcome to FLickY</h1>
         <p>This is a simple platform to maintain your albums.</p>
        
       </div>
@@ -84,11 +84,12 @@
  	 		<td><a href="/albums/${album[key].uid}">${album[key].description}</a>
  	 </#list>
 	</table> 
+	<include "/sidebar.ftl">
         </div>
  
-        <div class="span4">
+        <div class="span4">        
           <h2>Recent Images</h2>
-          <#include "/sidebar.ftl">
+          
          <ul class="thumbnails">
          <li class="span3">
          <a href="#" class="thumbnail">

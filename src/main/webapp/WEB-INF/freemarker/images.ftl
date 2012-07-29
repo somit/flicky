@@ -74,17 +74,19 @@
    
                        <div class="row">
         <div class="span4 offset2">       
-       <h2>     Comments</h2>
+       <h2>     Comments:   </h2>
+       <h2>   -----------------------------------------------</h2>
                 <#list singleImage.comments as key>       
- 	      < class="span3">
+ 	      <li>
        <h3>${key}</h3>
          </a>
          </li>
          </#list>
-         <a class="btn" data-toggle="modal" href="/" >Comment</a>
-         <!--- code for adding comments---->
-
-      <!--- code for adding comments---->     
+         <h2>   -----------------------------------------------</h2>
+              <form name="user" action="/comments/${singleImage.album.uid}/${singleImage.id}" method="post">
+              <input type="text" name="comment" /><br/>
+                 <input type="submit" value="Comment" />
+            </form>  
          
          
          
