@@ -16,16 +16,12 @@ public class Image {
 	private String date;
 	private String description;
 	private List<String> comments;
-	private String previous;
-	private String next;
-	private Album album;
 	
 	public Image()
-	{    previous=null;
-	     next=null;
-		comments =new ArrayList<String>();
+	{
+		comments = new ArrayList<String>();
+		
 	}
-	
 	/**
 	 * @return the description
 	 */
@@ -38,37 +34,7 @@ public class Image {
 	 */
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	/**
-	 * @return the previous
-	 */
-	public String getPrevious() {
-		return previous;
-	}
-
-	/**
-	 * @param previous the previous to set
-	 */
-	public void setPrevious(String previous) {
-		this.previous=previous;
-	}
-
-	/**
-	 * @return the next
-	 */
-	public String getNext() {
-		return next;
-	}
-
-	/**
-	 * @param next the next to set
-	 */
-	public void setNext(String next) {
-		this.next = next;
-	}
-
-	
+	}	
 	/**
 	 * @return the id
 	 */
@@ -116,17 +82,4 @@ public class Image {
 		return name;
 	}
 
-	/**
-	 * @return the album
-	 */
-	public Album getAlbum() {
-		return album;
-	}
-
-	/**
-	 * @param album the album to set
-	 */
-	public void setAlbum(Album album) {
-		this.album = album;
-	}	
 }

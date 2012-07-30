@@ -1,9 +1,7 @@
 package com.hashedin.flicky.web;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,17 +18,17 @@ import com.hashedin.flicky.manager.AlbumManager;
 public class AlbumsController {
 	@Autowired
 	private AlbumManager db;
-
+	
 	@RequestMapping("/albums/{uid}")
 	public ModelAndView albums(@PathVariable String uid) {
-		Album album = db.getTheAlbum(uid);
-		List<Image> albumImages = new ArrayList<Image>();
-		albumImages = album.getListOfImages();
-		ImageUpload imageUpload = new ImageUpload();
-		imageUpload.setAlbumId(uid);
-		imageUpload.setImageList(albumImages);
+		Album album = db.getAlbum(uid);
+//		List<Image> albumImages = new ArrayList<Image>();
+//		albumImages = album.getListOfImages();
+//		AlbumView albumView = new AlbumView();
+//		albumView.setAlbumId(uid);
+//		albumView.setImageList(albumImages);
 		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("albumImages", imageUpload);
+		model.put("album", album);
 		ModelAndView modelAndView = new ModelAndView("albums", model);
 		return modelAndView;
 	}
@@ -50,23 +48,5 @@ public class AlbumsController {
 		String albumId = album.getUid();
 		return "redirect:/upload/" + albumId;
 	}
-	@RequestMapping("/sidebar")
-	public ModelAndView recentImages() {
-		//List<Image> recentImages = new ArrayList<Image>();
-		List<Image> imageList = db.getRecentImages();
-		List<Image> recentImageList = new ArrayList<Image>();
-		int size = imageList.size();
-		System.out.println(size);
-		int i= (size<=3)?0:size-3;
-		int j=i;
-		System.out.println(i);
-		for(j=size-1;j>=i;j--){
-			Image image=imageList.get(j);
-			recentImageList.add(image);
-		}
-		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("recentImages", recentImageList);
-		ModelAndView modelAndView = new ModelAndView("sidebar", model);
-		return modelAndView;
-	}
+
 }

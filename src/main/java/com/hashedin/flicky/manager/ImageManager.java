@@ -4,6 +4,7 @@
 package com.hashedin.flicky.manager;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +20,7 @@ import com.hashedin.flicky.web.Image;
  */
 public class ImageManager {
 	private final Map<String, Image> images = new HashMap<String, Image>();
-
+	private List<RecentImages> recentImages = new ArrayList<RecentImages>();
 	public Image getImage(String uid) {
 		return images.get(uid);
 	}
@@ -31,24 +32,50 @@ public class ImageManager {
 		Image newImage = new Image();
 		newImage.setId(idImage);
 		newImage.setName(name);
-		newImage.setAlbum(album);
 		newImage.setDate(creationDate);
 		newImage.setDescription(description);
-		newImage.setNext(idImage);
-		newImage.setPrevious(idImage);
-		
 		List<Image> imageList=album.getListOfImages();
-		//int size=imageList.size();
-         if(!imageList.isEmpty()){
-        	 Image previousImage=imageList.get(imageList.size()-1);
-        	 newImage.setPrevious(previousImage.getId());
-        	 previousImage.setNext(idImage);
-         }
-
+		imageList.add(newImage);
 		images.put(idImage,newImage);
+		addToRecent(album, newImage);
 		return newImage;
 	}
+	private void addToRecent(Album album, Image newImage){
+		RecentImages temp= new RecentImages();
+		temp.setAlbum(album);
+		temp.setImage(newImage);
+		recentImages.add(temp);
+		int size = recentImages.size();
+          if(size>=4)
+          {
+			List<RecentImages> tempList = new ArrayList<RecentImages>();
+			for(int i=size-4;i<size;i++){
+			temp=recentImages.get(i);
+				tempList.add(temp);
+			}
+			recentImages=tempList;
+		  }
+	}
 
-	
-	
+	/**
+	 * @return the recentImages
+	 */
+	public List<RecentImages> getRecentImages() {
+		return recentImages;
+	}
+
+	/**
+	 * @param recentImages the recentImages to set
+	 */
+	public void setRecentImages(List<RecentImages> recentImages) {
+		this.recentImages = recentImages;
+	}
+
+	/**
+	 * @return the images
+	 */
+	public Map<String, Image> getImages() {
+		return images;
+	}
+
 }

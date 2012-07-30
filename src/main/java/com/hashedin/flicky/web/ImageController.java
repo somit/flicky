@@ -33,17 +33,44 @@ public class ImageController {
 	@Autowired
 	private AlbumManager db;
 	
+	@Autowired
+	private ImageManager dbi;
+	
 	@RequestMapping("/images/{albumUid}/{imageId}")	
 	public ModelAndView albums(@PathVariable String albumUid, @PathVariable String imageId){
-          ImageManager imageManager=db.getImageManagerMap().get(albumUid);
-          Image image=imageManager.getImage(imageId);
+         Image image = dbi.getImage(imageId);
+         Album album = db.getAlbum(albumUid);
+         List<Image> imageListOfAlbum = album.getListOfImages();
+         //ImageView singleImage = new ImageView();
+         //setImageView(singleImage,album,image);
+         Image previousImage = image;
+         Image nextImage = image;
+ 		for(int i=0;i<imageListOfAlbum.size();i++){
+			Image temp = imageListOfAlbum.get(i);
+			if(temp.getId() == image.getId()){
+				break;
+			}
+			if(i!=0){
+				temp = imageListOfAlbum.get(i-1);
+				previousImage = temp;
+			}
+			if(i!= imageListOfAlbum.size()){
+				temp = imageListOfAlbum.get(i+1);
+				nextImage = temp;
+			}
+			
+		}
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("singleImage",image);
+		model.put("prev",previousImage);
+		model.put("next",nextImage);
+		model.put("album", album);
 		ModelAndView modelAndView = new ModelAndView("images", model);
 		return modelAndView;
 	}
 
-    @RequestMapping(value="/upload/{uid}")
+
+	@RequestMapping(value="/upload/{uid}")
     public ModelAndView add (@PathVariable String uid){
     	Map<String, Object> model = new HashMap<String, Object>();
 		model.put("albumid",uid);
@@ -58,28 +85,22 @@ public class ImageController {
         	System.out.println(properties.get("path"));
     	} catch (IOException e) {
     	}
+    	//File dir = new File(properties.getProperty("path")+uid);  
+    //	dir.mkdir();
     	String filePath=properties.getProperty("path")+file.getOriginalFilename();
     	 File dest = new File(filePath); 
     	 file.transferTo(dest); 
     	 String name=file.getOriginalFilename();
-    	 ImageManager imageManager=db.getImageManagerMap().get(uid);
-    	 Album album=db.getTheAlbum(uid);
-    	  Image newImage=imageManager.createImage(album, name, description);
-    	  List<Image> recent = db.getRecentImages();
-    	  recent.add(newImage);
-    	  album.getListOfImages().add(newImage);
-         if (newImage!=null) {
+    	  Album album=db.getAlbum(uid);
+    	  dbi.createImage(album, name, description);
             return "redirect:/upload/"+uid;
-        } else {
-            return "redirect:/upload/"+uid;
-        }
      }
      
      @RequestMapping(value = "/comments/{albumUid}/{imageId}", method = RequestMethod.POST)
      public String addComments(@PathVariable String albumUid,@PathVariable String imageId, @RequestParam("comment")String comment) throws IOException {
-    	
-    	 ImageManager imageManager=db.getImageManagerMap().get(albumUid);
-    	 Image image = imageManager.getImage(imageId);
+    	  
+    	 
+    	 Image image = dbi.getImage(imageId);
     	 List<String> comments= new ArrayList<String>();
     	 comments=image.getComments();
      	 comments.add(comment);
