@@ -84,7 +84,7 @@
  	 		<td><a href="/albums/${album[key].uid}">${album[key].description}</a>
  	 </#list>
 	</table> 
-	<include "/sidebar.ftl">
+	<#include "/sidebar.ftl">
         </div>
  
         <div class="span4">        

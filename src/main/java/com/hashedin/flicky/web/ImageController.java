@@ -4,11 +4,13 @@
 package com.hashedin.flicky.web;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -50,7 +52,13 @@ public class ImageController {
      }
      @RequestMapping(value = "/fileupload/{uid}", method = RequestMethod.POST)
      public String handleFormUpload(@PathVariable String uid, @RequestParam("description")String description,@RequestParam("file") MultipartFile file) throws IOException {
-    	 String filePath = "/home/somit/apps/flicky/src/main/webapp/static/images/" + file.getOriginalFilename(); 
+    	Properties properties=new Properties();
+    	try {
+    	    properties.load(new FileInputStream("config.properties"));
+        	System.out.println(properties.get("path"));
+    	} catch (IOException e) {
+    	}
+    	String filePath=properties.getProperty("path")+file.getOriginalFilename();
     	 File dest = new File(filePath); 
     	 file.transferTo(dest); 
     	 String name=file.getOriginalFilename();
@@ -59,7 +67,6 @@ public class ImageController {
     	  Image newImage=imageManager.createImage(album, name, description);
     	  List<Image> recent = db.getRecentImages();
     	  recent.add(newImage);
-    	// System.out.println(newImage.getPrevious()+" "+newImage.getId()+" "+newImage.getNext());
     	  album.getListOfImages().add(newImage);
          if (newImage!=null) {
             return "redirect:/upload/"+uid;
