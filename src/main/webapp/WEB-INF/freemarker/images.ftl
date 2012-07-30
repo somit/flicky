@@ -52,13 +52,15 @@
 
       </div>
     </div>
-
+    <div class="span6 offset2">
+        <h1>Album Name: ${album.name}</h1> <br /> 
+        </div>
           <div class="container">
            <div class="row">
            <div class="span12">        
    	 <div class="btn-group">
-   	 <a class="btn" href="/images/${singleImage.album.uid}/${singleImage.previous}">prev</a>
-   	 <a class="btn" href="/images/${singleImage.album.uid}/${singleImage.next}">next</a>
+   	 <a class="btn" href="/images/${album.uid}/${prev.id}">prev</a>
+   	 <a class="btn" href="/images/${album.uid}/${next.id}">next</a>
    	 </div> 
          </div>
     </div> <!-- /container -->
@@ -66,8 +68,8 @@
                <div class="container">
               <div class="row">
         <div class="span6">  
-        <h1>${singleImage.album.name}</h1>     
-        <h1>${singleImage.name} &nbsp;&nbsp;&nbsp;&nbsp; Date: ${singleImage.date}<h1>    
+
+        <h2>Image:${singleImage.name} &nbsp;&nbsp;&nbsp;&nbsp; Date: ${singleImage.date}<h2>    
           <a href="#"class="thumbnail">
           <img src="/static/images/${singleImage.name}" alt="Image" width="600" height="400">   </a>  
          </div>
@@ -76,14 +78,14 @@
         <div class="span4 offset2">       
        <h2>     Comments:   </h2>
        <h2>   -----------------------------------------------</h2>
-                <#list singleImage.comments as key>       
+         <#list singleImage.comments as key>       
  	      <li>
        <h3>${key}</h3>
          </a>
          </li>
          </#list>
          <h2>   -----------------------------------------------</h2>
-              <form name="user" action="/comments/${singleImage.album.uid}/${singleImage.id}" method="post">
+              <form name="user" action="/comments/${album.uid}/${singleImage.id}" method="post">
               <input type="text" name="comment" /><br/>
                  <input type="submit" value="Comment" />
             </form>  

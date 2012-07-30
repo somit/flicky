@@ -55,7 +55,7 @@
                        <div class="container">
      	            <div class="span4 offset1" >
     			<div class="btn-group">
-   	 <a class="btn" href="/upload/${albumImages.albumId}">Upload Image</a>
+   	 <a class="btn" href="/upload/${album.uid}">Upload Image</a>
    	 </div>
    	 </div>
     <div class="container">
@@ -66,9 +66,9 @@
         <div class="span12">
           <h2>Images</h2>
          </ul>
-         <#list albumImages.imageList as key>      
+         <#list album.listOfImages as key>      
  	      <ol class="span3">
-          <a href="/images/${key.album.uid}/${key.id}" class="thumbnail">
+          <a href="/images/${album.uid}/${key.id}" class="thumbnail">
           <img src="/static/images/${key.name}" alt="" width="260" height="180">
          </a>
          </ol>

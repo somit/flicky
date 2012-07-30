@@ -38,8 +38,8 @@
           <div class="span3">
           <#list recentImages as key> 
         <ol class="thumbnails">
-          <a href="/images/${key.album.uid}/${key.id}" class="thumbnail">
-          <img src="/static/images/${key.album.uid}/$key.id" alt="">
+          <a href="/images/${key.album.uid}/${key.image.id}" class="thumbnail">
+          <img src="/static/images/${key.image.name}" alt="">
          </a>
          </ol>
  	 </#list> 
