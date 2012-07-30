@@ -3,3 +3,7 @@ target
 .classpath
 .project
 src/main/webapp/static/images/
+application.log
+src/main/java/com/hashedin/flicky/manager/AlbumView.java
+src/main/java/com/hashedin/flicky/manager/HomeClass.java
+src/main/java/com/hashedin/flicky/manager/ImageView.java
