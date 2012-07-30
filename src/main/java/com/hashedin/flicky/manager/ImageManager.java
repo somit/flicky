@@ -16,59 +16,62 @@ import com.hashedin.flicky.web.Image;
 
 /**
  * @author somit
- *
+ * 
  */
 public class ImageManager {
 	private final Map<String, Image> images = new HashMap<String, Image>();
-	private List<RecentImages> recentImages = new ArrayList<RecentImages>();
+	private List<RecentImages> imageList = new ArrayList<RecentImages>();
+
 	public Image getImage(String uid) {
 		return images.get(uid);
 	}
 
 	public Image createImage(Album album, String name, String description) {
-		String creationDate = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
-		UUID id= UUID.randomUUID();
+		String creationDate = new SimpleDateFormat("dd/MM/yyyy")
+				.format(Calendar.getInstance().getTime());
+		UUID id = UUID.randomUUID();
 		String idImage = id.toString();
 		Image newImage = new Image();
 		newImage.setId(idImage);
 		newImage.setName(name);
 		newImage.setDate(creationDate);
 		newImage.setDescription(description);
-		List<Image> imageList=album.getListOfImages();
+		List<Image> imageList = album.getListOfImages();
 		imageList.add(newImage);
-		images.put(idImage,newImage);
+		images.put(idImage, newImage);
 		addToRecent(album, newImage);
 		return newImage;
 	}
-	private void addToRecent(Album album, Image newImage){
-		RecentImages temp= new RecentImages();
+
+	private void addToRecent(Album album, Image newImage) {
+		RecentImages temp = new RecentImages();
 		temp.setAlbum(album);
 		temp.setImage(newImage);
-		recentImages.add(temp);
-		int size = recentImages.size();
-          if(size>=4)
-          {
+		imageList.add(temp);
+		int size = imageList.size();
+		if (size >= 4) {
 			List<RecentImages> tempList = new ArrayList<RecentImages>();
-			for(int i=size-4;i<size;i++){
-			temp=recentImages.get(i);
+			for (int i = size - 4; i < size; i++) {
+				temp = imageList.get(i);
 				tempList.add(temp);
 			}
-			recentImages=tempList;
-		  }
+			imageList = tempList;
+		}
 	}
 
 	/**
 	 * @return the recentImages
 	 */
 	public List<RecentImages> getRecentImages() {
-		return recentImages;
+		return imageList;
 	}
 
 	/**
-	 * @param recentImages the recentImages to set
+	 * @param recentImages
+	 *            the recentImages to set
 	 */
 	public void setRecentImages(List<RecentImages> recentImages) {
-		this.recentImages = recentImages;
+		this.imageList = recentImages;
 	}
 
 	/**

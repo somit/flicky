@@ -20,7 +20,7 @@ public class HomeController {
 	private static Logger album_log = Logger.getLogger(HomeController.class);
 	@Autowired
 	private AlbumManager db;
-	
+
 	@Autowired
 	private ImageManager dbi;
 
@@ -28,13 +28,13 @@ public class HomeController {
 	public ModelAndView albums() {
 		album_log.info("Home Page started");
 		Map<String, Album> albumList = db.getAlbums();
-		List<RecentImages> reverseRecentImageList = dbi.getRecentImages();
-		List<RecentImages> recentImageList=new ArrayList<RecentImages>();
-		for(int i=reverseRecentImageList.size()-1;i>=0;i--){
-			recentImageList.add(reverseRecentImageList.get(i));
+		List<RecentImages> imageList = dbi.getRecentImages();
+		List<RecentImages> recentImageList = new ArrayList<RecentImages>();
+		for (int i = imageList.size() - 1; i >= 0; i--) {
+			recentImageList.add(imageList.get(i));
 		}
-		if(recentImageList.size()==0){
-		album_log.info("No images in the albums");
+		if (recentImageList.size() == 0) {
+			album_log.info("No images in the albums");
 		}
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("album", albumList);

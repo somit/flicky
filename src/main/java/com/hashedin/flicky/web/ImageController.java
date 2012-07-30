@@ -44,30 +44,34 @@ public class ImageController {
 		Image image = dbi.getImage(imageId);
 		Album album = db.getAlbum(albumUid);
 		List<Image> imageListOfAlbum = album.getListOfImages();
-		Image previousImage = image;
-		Image nextImage = image;
-		for (int i = 0; i < imageListOfAlbum.size(); i++) {
+		int i = 0;
+		for (i = 0; i < imageListOfAlbum.size(); i++) {
 			Image temp = imageListOfAlbum.get(i);
 			if (temp.getId() == image.getId()) {
 				break;
 			}
-			if (i != 0) {
-				temp = imageListOfAlbum.get(i - 1);
-				previousImage = temp;
-			}
-			if (i != imageListOfAlbum.size()) {
-				temp = imageListOfAlbum.get(i + 1);
-				nextImage = temp;
-			}
-
 		}
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("singleImage", image);
-		model.put("prev", previousImage);
-		model.put("next", nextImage);
+		model.put("prev", getPrevious(i, imageListOfAlbum));
+		model.put("next", getNext(i, imageListOfAlbum));
 		model.put("album", album);
 		ModelAndView modelAndView = new ModelAndView("images", model);
 		return modelAndView;
+	}
+
+	public Image getPrevious(int i, List<Image> imageListOfAlbum) {
+		if (i != 0) {
+			return imageListOfAlbum.get(i - 1);
+		}
+		return imageListOfAlbum.get(i);
+	}
+
+	public Image getNext(int i, List<Image> imageListOfAlbum) {
+		if (i != imageListOfAlbum.size()-1) {
+			return imageListOfAlbum.get(i + 1);
+		}
+		return imageListOfAlbum.get(i);
 	}
 
 	@RequestMapping(value = "/upload/{uid}")

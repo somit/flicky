@@ -18,15 +18,10 @@ import com.hashedin.flicky.manager.AlbumManager;
 public class AlbumsController {
 	@Autowired
 	private AlbumManager db;
-	
+
 	@RequestMapping("/albums/{uid}")
 	public ModelAndView albums(@PathVariable String uid) {
 		Album album = db.getAlbum(uid);
-//		List<Image> albumImages = new ArrayList<Image>();
-//		albumImages = album.getListOfImages();
-//		AlbumView albumView = new AlbumView();
-//		albumView.setAlbumId(uid);
-//		albumView.setImageList(albumImages);
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("album", album);
 		ModelAndView modelAndView = new ModelAndView("albums", model);

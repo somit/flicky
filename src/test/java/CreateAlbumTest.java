@@ -17,7 +17,7 @@ public class CreateAlbumTest {
 	}
 
 	@Test
-	public void tesCreateAlbum() {
+	public void testCreateAlbum() {
         Album album = db.createAlbum("Somit", "description");
         Assert.assertEquals(album,db.getAlbum(album.getUid()));
 	}

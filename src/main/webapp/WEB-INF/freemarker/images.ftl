@@ -55,6 +55,7 @@
     <div class="span6 offset2">
         <h1>Album Name: ${album.name}</h1> <br /> 
         </div>
+      
           <div class="container">
            <div class="row">
            <div class="span12">        
