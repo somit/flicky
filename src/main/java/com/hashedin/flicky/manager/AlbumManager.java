@@ -2,39 +2,39 @@ package com.hashedin.flicky.manager;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.UUID;
 
 import com.hashedin.flicky.web.Album;
 
 public class AlbumManager {
-	private final Map<String, Album> albums = new HashMap<String, Album>();
-	
+
 	public Album createAlbum(String name, String description) {
-		String creationDate = new SimpleDateFormat("dd/MM/yyyy")
-				.format(Calendar.getInstance().getTime());
+		String date = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
 		UUID uid = UUID.randomUUID();
 		String uidAlbum = uid.toString();
 		Album album = new Album();
+		album.setCreationDate(date);
 		album.setUid(uidAlbum);
 		album.setName(name);
 		album.setDescription(description);
-		album.setCreationDate(creationDate);
-		albums.put(uidAlbum, album);
 		return album;
 	}
-
-	/**
-	 * @param albums
-	 *            the albums to set
-	 * @return
-	 */
-	public Map<String, Album> getAlbums() {
-		return albums;
-	}
-
-	public Album getAlbum(String uid) {
-		return albums.get(uid);
-	}
-}
+	
+//	@SuppressWarnings("unchecked")
+//	public List<Album> getAllAlbums() {
+//		List<Album> albums = new ArrayList<Album>();
+//		albums = (List<Album>)dao.find("from Album");
+//	return albums;
+//      }
+//
+//	@SuppressWarnings("unchecked")
+//	public List<Image> getImagesFromAnAlbum(String uid){
+//    	return (List<Image>)dao.find("Select listOfImages from Album where uid ='"+uid+"'");
+//    }
+//	
+//	@SuppressWarnings("unchecked")
+//	public Album getAnAlbum(String uid){
+//		List<Album> temp = (List<Album>)dao.find("from Album where uid='"+uid+"'");
+//		return temp.get(0);
+//	}
+} 

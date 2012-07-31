@@ -4,11 +4,7 @@
 package com.hashedin.flicky.manager;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import com.hashedin.flicky.web.Album;
@@ -18,17 +14,9 @@ import com.hashedin.flicky.web.Image;
  * @author somit
  * 
  */
-public class ImageManager {
-	private final Map<String, Image> images = new HashMap<String, Image>();
-	private List<RecentImages> imageList = new ArrayList<RecentImages>();
-
-	public Image getImage(String uid) {
-		return images.get(uid);
-	}
-
+public class ImageManager{
 	public Image createImage(Album album, String name, String description) {
-		String creationDate = new SimpleDateFormat("dd/MM/yyyy")
-				.format(Calendar.getInstance().getTime());
+		String creationDate = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
 		UUID id = UUID.randomUUID();
 		String idImage = id.toString();
 		Image newImage = new Image();
@@ -36,49 +24,23 @@ public class ImageManager {
 		newImage.setName(name);
 		newImage.setDate(creationDate);
 		newImage.setDescription(description);
-		List<Image> imageList = album.getListOfImages();
-		imageList.add(newImage);
-		images.put(idImage, newImage);
-		addToRecent(album, newImage);
 		return newImage;
 	}
 
-	private void addToRecent(Album album, Image newImage) {
-		RecentImages temp = new RecentImages();
-		temp.setAlbum(album);
-		temp.setImage(newImage);
-		imageList.add(temp);
-		int size = imageList.size();
-		if (size >= 4) {
-			List<RecentImages> tempList = new ArrayList<RecentImages>();
-			for (int i = size - 4; i < size; i++) {
-				temp = imageList.get(i);
-				tempList.add(temp);
-			}
-			imageList = tempList;
-		}
-	}
-
-	/**
-	 * @return the recentImages
-	 */
-	public List<RecentImages> getRecentImages() {
-		return imageList;
-	}
-
-	/**
-	 * @param recentImages
-	 *            the recentImages to set
-	 */
-	public void setRecentImages(List<RecentImages> recentImages) {
-		this.imageList = recentImages;
-	}
-
-	/**
-	 * @return the images
-	 */
-	public Map<String, Image> getImages() {
-		return images;
-	}
-
+//   @SuppressWarnings("unchecked")
+//   public List<Image> getRecentImages(){
+//	   return (List<Image>)dao.find("FROM Image ORDER BY creationDate LIMIT 5");
+//   }
+//
+// 
+//	@SuppressWarnings("unchecked")
+//	public List<Image> getAllImages() {
+//		return (List<Image>)dao.find("FROM Image");
+//	}
+//    
+//	@SuppressWarnings("unchecked")
+//	public Image getImage(String id){
+//		return ((List<Image>)dao.find("FROM Image where id='"+id+"'")).get(0);
+//		
+//	}
 }

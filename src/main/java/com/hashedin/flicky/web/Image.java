@@ -6,15 +6,33 @@ package com.hashedin.flicky.web;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.CollectionOfElements;
+
 /**
  * @author somit
  *
  */
+
+@Entity
 public class Image {
+	
+    @Id
+    @GeneratedValue
+    private Long imageId;
+	
+    @ManyToOne
+    private Album album;
 	private String id;
 	private String name;
 	private String date;
 	private String description;
+	
+	@CollectionOfElements
 	private List<String> comments;
 	
 	public Image()
@@ -38,6 +56,7 @@ public class Image {
 	/**
 	 * @return the id
 	 */
+	
 	public String getId() {
 		return id;
 	}
@@ -80,6 +99,19 @@ public class Image {
 	}
 	public String getName() {
 		return name;
+	}
+	
+	public void setImageId(Long imageId) {
+		this.imageId = imageId;
+	}
+	public Long getImageId() {
+		return imageId;
+	}
+	public void setAlbum(Album album) {
+		this.album = album;
+	}
+	public Album getAlbum() {
+		return album;
 	}
 
 }

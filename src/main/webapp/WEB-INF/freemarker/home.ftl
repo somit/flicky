@@ -78,10 +78,10 @@
    <!---Album list here --->
          <table border=4>
          <tr><td>List of Albums<td>Creation Date<td>Description
-         <#list album?keys as key>
- 	    <tr><td><a href="/albums/${album[key].uid}">${album[key].name}</a>
- 	 		<td><a href="/albums/${album[key].uid}">${album[key].creationDate}</a>
- 	 		<td><a href="/albums/${album[key].uid}">${album[key].description}</a>
+         <#list album as key>
+ 	    <tr><td><a href="/albums/${key.uid}">${key.name}</a>
+ 	 		<td><a href="/albums/${key.uid}">${key.creationDate}</a>
+ 	 		<td><a href="/albums/${key.uid}">${key.description}</a>
  	 </#list>
 	</table> 
 	

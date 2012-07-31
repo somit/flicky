@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans 
+            http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+<!--  <bean id="jndiDataSource" class="org.springframework.jndi.JndiObjectFactoryBean" lazy-init="true">-->
+<!--     <property name="resourceRef" value="true"/>-->
+<!--      This JNDI name needs to exist in any deployed environment -->
+<!--     <property name="jndiName" value="jdbc/SportsDB"/>-->
+<!--  </bean>-->
+  
+  <bean id="mysqlDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" lazy-init="true">
+    <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+    <property name="url" value="jdbc:mysql://localhost:3306/flicky"/>
+    <property name="username" value="root"/>
+    <property name="password" value="root"/>
+    <property name="validationQuery" value="SELECT 1"/>
+    <property name="testOnBorrow" value="true"/>
+  </bean>
+  
+</beans>

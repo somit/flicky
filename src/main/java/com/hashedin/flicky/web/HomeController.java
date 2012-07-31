@@ -11,31 +11,29 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.hashedin.flicky.manager.AlbumManager;
-import com.hashedin.flicky.manager.ImageManager;
-import com.hashedin.flicky.manager.RecentImages;
+import com.hashedin.flicky.hibernate.IDataAccessObject;
 
 @Controller
 public class HomeController {
 	private static Logger album_log = Logger.getLogger(HomeController.class);
-	@Autowired
-	private AlbumManager db;
+	
+//	@Autowired
+//	private AlbumManager db;
 
+//	@Autowired
+//	private ImageManager dbi;
+	
 	@Autowired
-	private ImageManager dbi;
+	private IDataAccessObject dao;
 
+	//@SuppressWarnings("unchecked")
 	@RequestMapping("/")
 	public ModelAndView albums() {
-		album_log.info("Home Page started");
-		Map<String, Album> albumList = db.getAlbums();
-		List<RecentImages> imageList = dbi.getRecentImages();
-		List<RecentImages> recentImageList = new ArrayList<RecentImages>();
-		for (int i = imageList.size() - 1; i >= 0; i--) {
-			recentImageList.add(imageList.get(i));
-		}
-		if (recentImageList.size() == 0) {
-			album_log.info("No images in the albums");
-		}
+		DatabaseHandler dh = new DatabaseHandler();
+		album_log.info("Home Page Working");
+		List<Album> albumList = dh.getAllAlbums();
+		List<Image> recentImageList = new ArrayList<Image>();
+		recentImageList = dh.getRecentImages();
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("album", albumList);
 		model.put("recentImages", recentImageList);

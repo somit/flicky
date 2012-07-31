@@ -3,11 +3,25 @@ package com.hashedin.flicky.web;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Album {
+    @Id
+    @GeneratedValue
+    private Long albumId;
+ 
 	private String uid;
 	private String name;
 	private String description;
 	private String creationDate;
+	
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<Image> listOfImages;
 	public Album(){
 		listOfImages=new ArrayList<Image>();
@@ -76,5 +90,11 @@ public class Album {
 	}
 	public void addImageToList(Image image){
 		this.listOfImages.add(image);
+	}
+	public void setAlbumId(Long albumId) {
+		this.albumId = albumId;
+	}
+	public Long getAlbumId() {
+		return albumId;
 	}
 }

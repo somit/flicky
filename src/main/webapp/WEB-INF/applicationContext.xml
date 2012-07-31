@@ -24,4 +24,8 @@
     
     
 </bean>
+
+<import resource="classpath:dao.xml"></import>
+<import resource="classpath:hibernate-config.xml"></import>
+
 </beans>
