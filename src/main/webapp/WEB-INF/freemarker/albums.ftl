@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Bootstrap, from Twitter</title>
+    <title>FLicky from Hashedin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Flicky Application">
     <meta name="author" content="Somit">
@@ -68,8 +68,8 @@
          </ul>
          <#list album.listOfImages as key>      
  	      <ol class="span3">
-          <a href="/images/${album.uid}/${key.id}" class="thumbnail">
-          <img src="/static/images/${key.name}" alt="" width="260" height="180">
+          <a href="/images/${key.id}" class="thumbnail">
+          <img src="/static/images/${album.uid}/${key.name}" alt="some issue" width="260" height="180">
          </a>
          </ol>
  	 </#list> 
@@ -85,14 +85,12 @@
     <script src="/static/js/jquery.js"></script>
     <script src="/static/js/bootstrap-transition.js"></script>
     <script src="/static/js/bootstrap-alert.js"></script>
-
     <script src="/static/js/bootstrap-modal.js"></script>
     <script src="/static/js/bootstrap-dropdown.js"></script>
     <script src="/static/js/bootstrap-scrollspy.js"></script>
     <script src="/static/js/bootstrap-tab.js"></script>
     <script src="/static/js/bootstrap-tooltip.js"></script>
     <script src="/static/js/bootstrap-popover.js"></script>
-
     <script src="/static/js/bootstrap-button.js"></script>
     <script src="/static/js/bootstrap-collapse.js"></script>
     <script src="/static/js/bootstrap-carousel.js"></script>

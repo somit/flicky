@@ -177,5 +177,11 @@ public class HibernateDao extends HibernateDaoSupport implements IDataAccessObje
     {
         getHibernateTemplate().saveOrUpdateAll(entities);
     }
-
+	
+	
+	@Transactional
+    public void limitSize(final int maxResults)
+    {
+        getHibernateTemplate();
+    }
 }

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Bootstrap, from Twitter</title>
+    <title>Flicky from Hashedin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Flicky Application">
     <meta name="author" content="Somit">
@@ -60,8 +60,8 @@
            <div class="row">
            <div class="span12">        
    	 <div class="btn-group">
-   	 <a class="btn" href="/images/${album.uid}/${prev.id}">prev</a>
-   	 <a class="btn" href="/images/${album.uid}/${next.id}">next</a>
+   	 <a class="btn" rel="Previous Image" title=${prev.name} href="/images/${prev.id}">prev</a>
+   	 <a class="btn" rel="Next Image" title=${next.name} href="/images/${next.id}">next</a>
    	 </div> 
          </div>
     </div> <!-- /container -->
@@ -72,11 +72,12 @@
 
         <h2>Image:${singleImage.name} &nbsp;&nbsp;&nbsp;&nbsp; Date: ${singleImage.date}<h2>    
           <a href="#"class="thumbnail">
-          <img src="/static/images/${singleImage.name}" alt="Image" width="600" height="400">   </a>  
+          <img src="/static/images/${singleImage.album.uid}/${singleImage.name}" alt="Image" width="600" height="400">   </a>  
          </div>
    
                        <div class="row">
-        <div class="span4 offset2">       
+        <div class="span4 offset2">
+     
        <h2>     Comments:   </h2>
        <h2>   -----------------------------------------------</h2>
          <#list singleImage.comments as key>       
@@ -86,7 +87,7 @@
          </li>
          </#list>
          <h2>   -----------------------------------------------</h2>
-              <form name="user" action="/comments/${album.uid}/${singleImage.id}" method="post">
+              <form name="user" action="/comments/${singleImage.id}" method="post">
               <input type="text" name="comment" /><br/>
                  <input type="submit" value="Comment" />
             </form>  
@@ -103,14 +104,12 @@
     <script src="/static/js/jquery.js"></script>
     <script src="/static/js/bootstrap-transition.js"></script>
     <script src="/static/js/bootstrap-alert.js"></script>
-
     <script src="/static/js/bootstrap-modal.js"></script>
     <script src="/static/js/bootstrap-dropdown.js"></script>
     <script src="/static/js/bootstrap-scrollspy.js"></script>
     <script src="/static/js/bootstrap-tab.js"></script>
     <script src="/static/js/bootstrap-tooltip.js"></script>
     <script src="/static/js/bootstrap-popover.js"></script>
-
     <script src="/static/js/bootstrap-button.js"></script>
     <script src="/static/js/bootstrap-collapse.js"></script>
     <script src="/static/js/bootstrap-carousel.js"></script>

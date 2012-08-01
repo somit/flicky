@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Bootstrap, from Twitter</title>
+    <title>Flicky from Hashedin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Flicky Application">
     <meta name="author" content="Somit">

@@ -5,7 +5,6 @@ package com.hashedin.flicky.web;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOError;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,8 +22,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.hashedin.flicky.hibernate.IDataAccessObject;
+import com.hashedin.flicky.manager.AlbumManager;
 import com.hashedin.flicky.manager.ImageManager;
+import com.hashedin.flicky.model.Album;
+import com.hashedin.flicky.model.Image;
 
 /**
  * @author somit
@@ -38,12 +39,11 @@ public class ImageController {
 	private ImageManager dbi;
 	
 	@Autowired
-	private IDataAccessObject dao;
+	private AlbumManager db;
 
 	@RequestMapping("/images/{imageId}")
 	public ModelAndView albums(@PathVariable String imageId) {
-		DatabaseHandler dh = new DatabaseHandler();
-         Image image = dh.getImage(imageId);
+         Image image = dbi.getImage(imageId);
 		List<Image> imageListOfAlbum = new ArrayList<Image>();
 		Album album = image.getAlbum();
 			imageListOfAlbum = album.getListOfImages();
@@ -90,7 +90,6 @@ public class ImageController {
 			@RequestParam("description") String description,
 			@RequestParam("file") MultipartFile file) throws IOException {
 		
-		DatabaseHandler dh = new DatabaseHandler();
 		Properties properties = new Properties();
 		try {
 			properties.load(new FileInputStream("config.properties"));
@@ -101,32 +100,21 @@ public class ImageController {
 					.info("Config.properties not found . "
 							+ "Please pull from http://github.com/somithashedin.com and set path paramtere");
 		}
-		 File dir = new File(properties.getProperty("path")+uid);
-		 dir.mkdir();
+		File dir = new File(properties.getProperty("path")+uid);
+		dir.mkdir();
 		String filePath = properties.getProperty("path")+uid+"/"+ file.getOriginalFilename();
 		File dest = new File(filePath);
 		file.transferTo(dest);
 		String name = file.getOriginalFilename();
-		Album album = dh.getAnAlbum(uid);
-		Image newImage = dbi.createImage(album, name, description);
-		try{
-			dao.saveOrUpdate(newImage);
-			dao.flush();
-			s_log.info(" Image upload successful");
-		}catch (IOError e){
-		      s_log.warn(" Image upload have failed");
-		}
+		Album album = db.getAnAlbum(uid);
+		dbi.createImage(album, name, description);
 		return "redirect:/upload/" + uid;
 	}
 
 	@RequestMapping(value = "/comments/{imageId}", method = RequestMethod.POST)
 	public String addComments(@PathVariable String imageId,
 			@RequestParam("comment") String comment) throws IOException {
-		DatabaseHandler dh = new DatabaseHandler();
-		Image image = dh.getImage(imageId);
-		List<String> comments = new ArrayList<String>();
-		comments = image.getComments();
-		comments.add(comment);
+		dbi.addComment(comment, imageId);
 		return "redirect:/images/" + imageId;
 	}
 

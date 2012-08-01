@@ -24,8 +24,8 @@
     <property name="namingStrategy" ref="namingStrategy" />
     <property name="annotatedClasses" >
     	<list>
-    		<value>com.hashedin.flicky.web.Image</value>
-    		<value>com.hashedin.flicky.web.Album</value>
+    		<value>com.hashedin.flicky.model.Image</value>
+    		<value>com.hashedin.flicky.model.Album</value>
     	</list>
     </property>
     <!-- 

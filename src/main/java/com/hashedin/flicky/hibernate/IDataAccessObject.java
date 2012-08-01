@@ -126,5 +126,7 @@ public interface IDataAccessObject
      * @param entities Objects to save or update
      */
 	void saveOrUpdateAll(Collection entities);
+	
+    void limitSize(int maxResults);
 
 }

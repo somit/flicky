@@ -6,8 +6,7 @@ import com.hashedin.flicky.hibernate.HibernateDao;
 import com.hashedin.flicky.hibernate.IDataAccessObject;
 import com.hashedin.flicky.manager.AlbumManager;
 import com.hashedin.flicky.manager.ImageManager;
-import com.hashedin.flicky.web.Album;
-import com.hashedin.flicky.web.DatabaseHandler;
+import com.hashedin.flicky.model.Album;
 
 
 

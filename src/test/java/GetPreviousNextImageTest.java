@@ -4,8 +4,8 @@ import org.junit.Test;
 
 import com.hashedin.flicky.manager.AlbumManager;
 import com.hashedin.flicky.manager.ImageManager;
-import com.hashedin.flicky.web.Album;
-import com.hashedin.flicky.web.Image;
+import com.hashedin.flicky.model.Album;
+import com.hashedin.flicky.model.Image;
 import com.hashedin.flicky.web.ImageController;
 
 public class GetPreviousNextImageTest {
