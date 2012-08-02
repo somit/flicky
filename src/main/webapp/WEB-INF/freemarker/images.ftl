@@ -80,17 +80,36 @@
      
        <h2>     Comments:   </h2>
        <h2>   -----------------------------------------------</h2>
-         <#list singleImage.comments as key>       
- 	      <li>
-       <h3>${key}</h3>
-         </a>
-         </li>
-         </#list>
+          <ol>
+            <#list singleImage.comments as key>       
+ 	            <li>
+                 <h3>${key}</h3>
+               </li>
+            </#list>
+         </ol>
+         
+
+		     
+         <script type="text/javascript">
+         function displayComment(form)
+         	{
+         	var newdiv=document.createElement("div")
+			var newtext=document.createTextNode(this.form.comment.value)
+			newdiv.appendChild(newtext) //append text to new div
+			document.getElementById("mycom").appendChild(newdiv)
+			}
+		</script>
+         
+         
+         
+         
+         <div id="mycom"><h3></h3></div>
          <h2>   -----------------------------------------------</h2>
-              <form name="user" action="/comments/${singleImage.id}" method="post">
-              <input type="text" name="comment" /><br/>
-                 <input type="submit" value="Comment" />
+              <form action="/comments/${singleImage.id}" method="post">
+              <input type="text" name="comment" value=" "/><br/>
+                 <input type="submit" value="Comment" onClick="displayComment(this.form)"/>
             </form>  
+
          
          
          

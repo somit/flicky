@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -112,10 +116,14 @@ public class ImageController {
 	}
 
 	@RequestMapping(value = "/comments/{imageId}", method = RequestMethod.POST)
-	public String addComments(@PathVariable String imageId,
-			@RequestParam("comment") String comment) throws IOException {
+	public @ResponseBody String addComments(@PathVariable String imageId,
+			@RequestParam("comment") String comment, HttpServletResponse response) throws IOException {
 		dbi.addComment(comment, imageId);
-		return "redirect:/images/" + imageId;
+//		Map<String, Object> model = new HashMap<String, Object>();
+//		model.put("album", null);
+//		ModelAndView modelAndView = new ModelAndView("images", model);
+//		return modelAndView;
+		return null;
 	}
 
 }
