@@ -41,11 +41,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="/">Flicky</a>
+          <a class="brand" href="/">FLICKY</a>
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active"><a href="/">Home</a></li>
-              <li><a href="http://somit.me/">About Me</a></li>
+              <li class="active"><a href="http://somit.me/" target="_blank">About Me</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -53,20 +53,18 @@
       </div>
     </div>
     <div class="container">
-    <div class="row">
-        <div class="span8">
-<body>
+        <div class="span8 offset4">
+        <div class= "boxed">
   <form name="user" action="/createalbum" method="post">
-     <input type="text" name="name" />:Album Name <br/>
-     <input type="text" name="description" />:Description <br/>
-    <input type="submit" value="Save" />
+     <input type="text" name="name" placeholder="Album name goes here"/><br/>
+     <input type="text" name="description" placeholder="write one line about your album........."/><br/>
+    <input type="submit" value="Create" />
   </form>
-         
+  </div>
          </div>
-
-
-    </div> <!-- /container -->
-
+         </div>
+<span class="btn btn-primary btn-large" data-bpopup='{"contentContainer":".content","loadUrl":"assets/test.html"}'>Pop it up</span>
+                <span class="example">
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -85,6 +83,16 @@
     <script src="/static/js/bootstrap-collapse.js"></script>
     <script src="/static/js/bootstrap-carousel.js"></script>
     <script src="/static/js/bootstrap-typeahead.js"></script>
+    <script src="/static/js/jquery.lightbox_me.js"></script>
+    <script src="/static/js/jquery.bpopup-0.7.0.min.js"></script>
+         <script type="text/javascript">
+         $('element_to_pop_up').bPopup({
+            content:'iframe', //'iframe' or 'ajax'
+            contentContainer:'.content',
+            loadUrl:'http://dinbror.dk/search' //Uses jQuery.load()
+        });
+</script>
+ 
 
   </body>
 </html>

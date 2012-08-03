@@ -41,11 +41,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="/">Flicky</a>
+          <a class="brand" href="/">FLICKY</a>
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active"><a href="/">Home</a></li>
-              <li><a href="http://somit.me/">About Me</a></li>
+              <li ><a href="/album">Create Album</a></li>
+              <li class="active"><a href="http://somit.me/" target="_blank">About Me</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -53,39 +54,45 @@
       </div>
     </div>
     <div class="span6 offset2">
-        <h1>Album Name: ${album.name}</h1> <br /> 
+        <h1>${album.name}</h1> <br /> 
         </div>
-      
           <div class="container">
            <div class="row">
            <div class="span12">        
-   	 <div class="btn-group">
-   	 <a class="btn" rel="Previous Image" title=${prev.name} href="/images/${prev.id}">prev</a>
-   	 <a class="btn" rel="Next Image" title=${next.name} href="/images/${next.id}">next</a>
-   	 </div> 
-         </div>
+ 
+        
     </div> <!-- /container -->
 
                <div class="container">
               <div class="row">
         <div class="span6">  
 
-        <h2>Image:${singleImage.name} &nbsp;&nbsp;&nbsp;&nbsp; Date: ${singleImage.date}<h2>    
-          <a href="#"class="thumbnail">
-          <img src="/static/images/${singleImage.album.uid}/${singleImage.name}" alt="Image" width="600" height="400">   </a>  
+ 
+     <div id="myCarousel" class="carousel slide">
+    <div class="carousel-inner">
+    <div class="active item"><a href="#"class="thumbnail"><img src="/static/images/${singleImage.album.uid}/${singleImage.name}" alt="Image Lost" width="600" height="400"></a></div>
+    </div>
+    <a class="carousel-control left" href="/images/${prev.id}" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="/images/${next.id}" data-slide="next">&rsaquo;</a>
+   </div>
+        <h3>${singleImage.name} &nbsp;&nbsp;&nbsp;&nbsp;${singleImage.date}<h3>   
+   
+        <script type="text/javascript">
+   	 		$('.carousel').carousel({
+    		interval: 2000
+    		})
+			</script>
+   
          </div>
    
                        <div class="row">
         <div class="span4 offset2">
      <div id= "mycom1">
-       <h2>     Comments:   </h2>
-       <h2>   -----------------------------------------------</h2>
+       <h2>     Comments:   </h2><br />
+    
           <ul>
             <#list singleImage.comments as key>
-                 
- 	            <li>
-                 <h3>${key}</h3>
-               </li>
+                <li><h3>${key}</h3></li>	
             </#list>
             <div id="mycom"></div>
          </ul>
@@ -95,7 +102,7 @@
       
  <script src="/static/js/jquery-latest.js"></script>
   <form action="/comments/${singleImage.id}" id="searchForm" method="post">
-   <input type="text" name="comment" placeholder="Comment..." />
+   <input type="text" name="comment" placeholder="Comment..." /><br />
    <input type="submit" value="Comment" />
   </form>
 

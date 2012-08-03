@@ -61,7 +61,7 @@ public class ImageManager {
 	@SuppressWarnings("unchecked")
 	public List<Image> getRecentImages() {
 		List<Image> query = (List<Image>) dao
-				.find("from Image order by timestamp");
+				.find("from Image order by imageId desc");
 		int size = query.size();
 		List<Image> list = new ArrayList<Image>();
 		if (size >= 4) {

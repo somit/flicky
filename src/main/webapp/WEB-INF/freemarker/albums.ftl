@@ -41,11 +41,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="/">Flicky</a>
+          <a class="brand" href="/">FLICKY</a>
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active"><a href="/">Home</a></li>
-              <li><a href="http://somit.me/">About Me</a></li>
+              <li ><a href="/album">Create Album</a></li>
+              <li class="active"><a href="http://somit.me/" target="_blank">About Me</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>

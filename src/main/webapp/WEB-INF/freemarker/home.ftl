@@ -37,11 +37,12 @@
     <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container">
-          <a class="brand" href="/">Flicky</a>
+          <a class="brand" href="/">FLICKY</a>
           <div class="nav-collapse">
             <ul class="nav">
               <li class="active"><a href="/">Home</a></li>
-              <li><a href="http://somit.me/" target="_blank">About Me</a></li>
+              <li ><a href="/album">Create Album</a></li>
+              <li class="active"><a href="http://somit.me/" target="_blank">About Me</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -52,8 +53,8 @@
           <div class="hero-unit" height=80px>
             <div class="row">
                 <div class="span5 offset1"
-                  <p><h1>Welcome to FLickY</h1></p>
-                  <p><h2>This is a simple platform to maintain your albums.</h2></p> 
+                  <p><h1>Welcome to FLICKY</h1></p>
+                  <p>This is a simple platform to maintain your albums.</p> 
                 </div>
                 <div class="span4">
                   <a class="btn btn-primary btn-large" href="/album">Start here! Create your Album </a>
@@ -66,12 +67,11 @@
             <div class="row">
                 <div class="span9"> 
                          
-                     <h1>ALBUM LIST</h1>   
+                     <mark><h1>ALBUM LIST</h1></mark>   
                         <!---Album list here --->
                            <div class="row">
                            
-                        <#list album as key>
-                                
+                        <#list album as key>   
 						        <div class="span"><div class="boxed"><a href="/albums/${key.uid}"><h1>${key.name}</h1></a>
                                 <a href="/albums/${key.uid}"> ${key.creationDate}</a>
  	 			       			<a href="/albums/${key.uid}"> ${key.description}</a>
