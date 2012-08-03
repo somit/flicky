@@ -9,6 +9,7 @@
      <meta name="author" content="Somit Srivastava" />
      
     <!-- Le styles -->
+     <link rel="stylesheet" href="/static/css/nivo-slider.css" type="text/css" media="screen" />
     <link href="/static/css/bootstrap.css" rel="stylesheet">
     <style>
       body {
@@ -102,9 +103,7 @@
 
           </div>
     </div> <!-- /container1 -->
-  
-    
-
+ 
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -123,11 +122,10 @@
     <script src="/static/js/bootstrap-typeahead.js"></script>
     <script language="Javascript" type="text/javascript" src="/static/js/jquery-1.4.1.js"></script>
 	<script language="Javascript" type="text/javascript" src="/static/js/jquery.blinds-0.9.js"></script>
-
-		<script type="text/javascript">
-			$(window).load(function () {
-				$('.slideshow').blinds();
-			})
-		</script>
+     <script type="text/javascript">
+$(window).load(function () {
+$('.slideshow').blinds();
+})
+</script>
   </body>
 </html>

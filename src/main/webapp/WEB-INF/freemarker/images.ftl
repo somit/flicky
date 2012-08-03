@@ -77,45 +77,57 @@
    
                        <div class="row">
         <div class="span4 offset2">
-     
+     <div id= "mycom1">
        <h2>     Comments:   </h2>
        <h2>   -----------------------------------------------</h2>
-          <ol>
-            <#list singleImage.comments as key>       
+          <ul>
+            <#list singleImage.comments as key>
+                 
  	            <li>
                  <h3>${key}</h3>
                </li>
             </#list>
-         </ol>
-         
+            <div id="mycom"></div>
+         </ul>
+   </div>
+   
+     
+      
+ <script src="/static/js/jquery-latest.js"></script>
+  <form action="/comments/${singleImage.id}" id="searchForm" method="post">
+   <input type="text" name="comment" placeholder="Comment..." />
+   <input type="submit" value="Comment" />
+  </form>
 
-		     
-         <script type="text/javascript">
-         function displayComment(form)
-         	{
-         	var newdiv=document.createElement("div")
-			var newtext=document.createTextNode(this.form.comment.value)
-			newdiv.appendChild(newtext) //append text to new div
+  </div>
+<script>
+  /* attach a submit handler to the form */
+  $("#searchForm").submit(function(event) {
+    event.preventDefault(); 
+        
+    var $form = $( this ),
+        term = $form.find( 'input[name="comment"]' ).val(),
+        url = $form.attr( 'action' );
+      $.post( url, { newComment: term },
+      function() {
+         	var newdiv=document.createElement("li")
+         	var newdiv1=document.createElement("h3")
+			var newtext=document.createTextNode(term)
+			newdiv1.appendChild(newtext) //append text to new div
+			newdiv.appendChild(newdiv1)
 			document.getElementById("mycom").appendChild(newdiv)
-			}
-		</script>
-         
-         
-         
-         
-         <div id="mycom"><h3></h3></div>
-         <h2>   -----------------------------------------------</h2>
-              <form action="/comments/${singleImage.id}" method="post">
-              <input type="text" name="comment" value=" "/><br/>
-                 <input type="submit" value="Comment" onClick="displayComment(this.form)"/>
-            </form>  
+      }
+    );
+  });
+</script>
 
-         
-         
-         
-         </div>
+
+
+
+
          
     </div> <!-- /container -->\
+
 
     <!-- Le javascript
     ================================================== -->
