@@ -52,8 +52,8 @@
           <div class="hero-unit" height=80px>
             <div class="row">
                 <div class="span5 offset1"
-                  <h1>Welcome to FLickY</h1>
-                  <p>This is a simple platform to maintain your albums.</p> 
+                  <p><h1>Welcome to FLickY</h1></p>
+                  <p><h2>This is a simple platform to maintain your albums.</h2></p> 
                 </div>
                 <div class="span4">
                   <a class="btn btn-primary btn-large" href="/album">Start here! Create your Album </a>
@@ -61,42 +61,25 @@
        	     </div>      
           </div>
      </div> 
-<!-- ================================================================== -->
 
-   <div class="container">
-		<!-- slideshow images -->
-		<div class="slideshow"> 
-		   <ul> 
-			  <li><img src="/static/test/1.jpg" alt="lemon   "  /></li>
-			  <li><img src="/static/test/2.jpg" alt="lemon tea" /></li>
-			  <li><img src="/static/test/4.jpg" alt="salad w  "/></li>
-			  <li><img src="/static/test/5.jpg" alt="lemonade!" /></li>
-		   </ul> 
-		</div> 
-
-		<!-- change image links -->
-		<a href="#" class="change_link" onclick="$('.slideshow').blinds_change(0)">1</a>
-		<a href="#" class="change_link" onclick="$('.slideshow').blinds_change(1)">2</a>
-		<a href="#" class="change_link" onclick="$('.slideshow').blinds_change(2)">3</a>
-		<a href="#" class="change_link" onclick="$('.slideshow').blinds_change(3)">4</a>
-		</div>      
-<!-- ================================================================== -->
     <div class="container"><!--container 1-->
             <div class="row">
-                <div class="span8"> 
+                <div class="span9"> 
                          
-                     <h2>ALBUM LIST</h2>   
+                     <h1>ALBUM LIST</h1>   
                         <!---Album list here --->
+                           <div class="row">
+                           
                         <#list album as key>
-                               <div class="row">
-						        <div class="span2"><a href="/albums/${key.uid}">${key.name}</a></div>
-                                <div class="span2"><a href="/albums/${key.uid}"> ${key.creationDate}</a></div>
- 	 			       			<div class="span2"><a href="/albums/${key.uid}"> ${key.description}</a></div>	
- 	 			       		   </div>	
+                                
+						        <div class="span"><div class="boxed"><a href="/albums/${key.uid}"><h1>${key.name}</h1></a>
+                                <a href="/albums/${key.uid}"> ${key.creationDate}</a>
+ 	 			       			<a href="/albums/${key.uid}"> ${key.description}</a>
+ 	 			       			</div></div>
                         </#list>   
+                             </div>
                   </div>
-                  
-         				<div class="span4">        
+         				<div class="span3">        
            					<h2>Recent Images</h2>
            					<#include "/sidebar.ftl">
          				</div>

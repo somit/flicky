@@ -4981,3 +4981,26 @@ a.badge:hover {
 .invisible {
   visibility: hidden;
 }
+
+
+.change_link {
+	display: block;
+	width: 20px;
+	height: 20px;
+	font-size: 12pt;
+	background-color: #eee;
+	float: left;
+	margin-right: 5px;
+	text-align: center;
+	margin-top: 10px;
+	border: 1px solid #bbb;
+	text-decoration: none;
+}
+
+div.boxed
+{
+width:220px;
+padding:10px;
+border:3px solid gray;
+margin:2px;
+}
